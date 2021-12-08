@@ -110,8 +110,14 @@ else:
   database= "My_hotel"
   )
   mycursor = mydb.cursor()
-  for i in range(len(image_urls_r)):
-    sql = "INSERT INTO Hotel_data(Title, Sleeps, Bedrooms, Bathrooms, Price, Picture_1, Picture_2, Picture_3) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s)"
-    val = (str(names_t[i]), str(final_room[i][0]), str(final_room[i][1]), str(final_room[i][2]), str(price_t[i]), str(image_urls_r[i][0]), str(image_urls_r[i][1]), str(image_urls_r[i][2]))
-    mycursor.execute(sql, val)
-    mydb.commit()
+  
+  try:
+    for i in range(len(image_urls_r)):
+        sql = "INSERT INTO Hotel_data(Title, Sleeps, Bedrooms, Bathrooms, Price, Picture_1, Picture_2, Picture_3) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s)"
+        val = (str(names_t[i]), str(final_room[i][0]), str(final_room[i][1]), str(final_room[i][2]), str(price_t[i]), str(image_urls_r[i][0]), str(image_urls_r[i][1]), str(image_urls_r[i][2]))
+        mycursor.execute(sql, val)
+        mydb.commit()
+  except:
+       print("====================================================")
+       print('Dublicate Entry')
+       print("====================================================")
